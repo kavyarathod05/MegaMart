@@ -8,7 +8,7 @@ export async function fetchLoggedInUserOrders(userId) {
   try {
     console.log('Fetching orders for User ID:', userId);
     
-    const response = await fetch(`http://localhost:8080/orders/user/`+userId);
+    const response = await fetch(`https://mega-mart-backend-eight.vercel.app/orders/user/`+userId);
 
     // Check if the response is ok (status code 200-299)
     if (!response.ok) {
@@ -25,7 +25,7 @@ export async function fetchLoggedInUserOrders(userId) {
 
 export async function fetchLoggedInUser (userId) {
   try {
-    const response = await fetch(`http://localhost:8080/users/`+userId);
+    const response = await fetch(`https://mega-mart-backend-eight.vercel.app/users/`+userId);
     const data = await response.json();
     return { data };
   } catch (error) {
@@ -41,7 +41,7 @@ export function updateUser(update) {
       console.log('Update payload:', update);
 
       // Perform the PATCH request to update the entire user object
-      const response = await fetch(`http://localhost:8080/users/${update.id}`, {
+      const response = await fetch(`https://mega-mart-backend-eight.vercel.app/users/${update.id}`, {
         method: 'PATCH',
         body: JSON.stringify(update), // Send the full user object
         headers: { 'Content-Type': 'application/json' },
