@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config();  // Load environment variables from .env file
 
-
+const corsOptions = {
+    origin: 'https://mega-mart-allinone.vercel.app', // replace with your frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // allow credentials to be sent
+};
 const { createProduct } = require('./controller/Product');
 const productsRouter = require('./routes/Products');
 const categoriesRouter = require('./routes/Categories');
@@ -17,9 +21,7 @@ const ordersRouter = require('./routes/Order');
 
 //middlewares
 
-server.use(cors({
-    exposedHeaders:['X-Total-Count']
-}))
+server.use(cors(corsOptions));
 server.use(express.json()); // to parse req.body
 server.use('/products', productsRouter.router);
 server.use('/categories', categoriesRouter.router)
