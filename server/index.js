@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();  // Load environment variables from .env file
 
-const corsOptions = {
-    origin:'*',
-    // origin: 'https://mega-mart-allinone.vercel.app', // replace with your frontend URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // allow credentials (cookies, authorization headers) to be sent
-    exposedHeaders: ['X-Total-Count'], // expose headers to the client
-};
+// const corsOptions = {
+//     origin:'*',
+//     // origin: 'https://mega-mart-allinone.vercel.app', // replace with your frontend URL
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true, // allow credentials (cookies, authorization headers) to be sent
+//     exposedHeaders: ['X-Total-Count'], // expose headers to the client
+// };
 
 // Routes
 const { createProduct } = require('./controller/Product');
@@ -23,7 +23,7 @@ const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
 
 // Middlewares
-server.use(cors(corsOptions)); // Apply CORS with the defined options
+server.use(cors()); // Apply CORS with the defined options
 server.use(express.json()); // To parse JSON in req.body
 
 // Route Handlers
