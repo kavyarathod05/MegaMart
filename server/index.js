@@ -36,6 +36,8 @@ server.use('/cart', cartRouter.router);
 server.use('/orders', ordersRouter.router);
 
 main().catch(err => console.log(err));
+console.log('MongoDB URL:', process.env.MONGODB_URL);
+
 
 // Database Connection
 async function main() {
