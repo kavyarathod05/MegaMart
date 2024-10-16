@@ -6,7 +6,8 @@ exports.createUser = async (req, res) => {
     const doc = await user.save();
     res.status(201).json({id:doc.id,role:doc.role});
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ message: "cant make user" });
+    // res.status(400).json(err);
   }
 };
 
