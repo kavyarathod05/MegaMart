@@ -3,7 +3,7 @@ export function addToCart(item) {
     try {
       console.log('Adding to cart:', JSON.stringify(item)); // Log the item being sent
 
-      const response = await fetch('https://mega-mart-backend-eight.vercel.app/cart', {
+      const response = await fetch('https://megamart-be-02.onrender.com/cart', {
         method: 'POST',
         body: JSON.stringify(item),
         headers: { 'Content-Type': 'application/json' }, // Ensure correct header case
@@ -31,7 +31,7 @@ export function addToCart(item) {
 export function fetchItemsByUserId(userId) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`https://mega-mart-backend-eight.vercel.app/cart?user=${userId}`);
+      const response = await fetch(`https://megamart-be-02.onrender.com/cart?user=${userId}`);
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Failed to fetch items:', response.status, errorData);
@@ -49,7 +49,7 @@ export function fetchItemsByUserId(userId) {
 export function updateCart(update) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`https://mega-mart-backend-eight.vercel.app/cart/${update.id}`, {
+      const response = await fetch(`https://megamart-be-02.onrender.com/cart/${update.id}`, {
         method: 'PATCH',
         body: JSON.stringify(update),
 
@@ -75,7 +75,7 @@ export function updateCart(update) {
 export function deleteItemFromCart(itemId) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`https://mega-mart-backend-eight.vercel.app/cart/${itemId}`, {
+      const response = await fetch(`https://megamart-be-02.onrender.com/cart/${itemId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }, // Ensure correct header case
       });
