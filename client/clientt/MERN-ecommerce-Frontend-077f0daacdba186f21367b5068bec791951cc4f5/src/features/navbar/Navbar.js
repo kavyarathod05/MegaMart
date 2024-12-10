@@ -29,7 +29,15 @@ function classNames(...classes) {
 function NavBar({ children }) {
   const items = useSelector(selectItems);
   const user = useSelector(selectLoggedInUser);
+  if(!user){
+    return (
+      <div>
+        {/* Show a fallback UI or loading state */}
+        <span>Loading user data...</span>
+      </div>
+    );
 
+  }
   return (
     <>
       <div className="min-h-full">
@@ -43,7 +51,7 @@ function NavBar({ children }) {
                       <Link to="/">
                         <img
                           className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png"
                           alt="Your Company"
                         />
                       </Link>
@@ -96,7 +104,7 @@ function NavBar({ children }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
+                              src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png"
                               alt=""
                             />
                           </Menu.Button>
@@ -175,7 +183,7 @@ function NavBar({ children }) {
                     <div className="flex-shrink-0">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png"
                         alt=""
                       />
                     </div>
@@ -225,7 +233,7 @@ function NavBar({ children }) {
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              E-Commerce
+              Mega Mart
             </h1>
           </div>
         </header>

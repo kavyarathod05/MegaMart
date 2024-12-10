@@ -1,5 +1,5 @@
-import React, { useState, Fragment, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, Fragment, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   fetchBrandsAsync,
   fetchCategoriesAsync,
@@ -8,33 +8,33 @@ import {
   selectBrands,
   selectCategories,
   selectTotalItems,
-} from '../productSlice';
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+} from "../productSlice";
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   StarIcon,
-} from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+} from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
   FunnelIcon,
   MinusIcon,
   PlusIcon,
   Squares2X2Icon,
-} from '@heroicons/react/20/solid';
-import { ITEMS_PER_PAGE, discountedPrice } from '../../../app/constants';
-import Pagination from '../../common/Pagination';
+} from "@heroicons/react/20/solid";
+import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import Pagination from "../../common/Pagination";
 
 const sortOptions = [
-  { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
-  { name: 'Price: Low to High', sort: 'price', order: 'asc', current: false },
-  { name: 'Price: High to Low', sort: 'price', order: 'desc', current: false },
+  { name: "Best Rating", sort: "rating", order: "desc", current: false },
+  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
+  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function ProductList() {
@@ -45,13 +45,13 @@ export default function ProductList() {
   const totalItems = useSelector(selectTotalItems);
   const filters = [
     {
-      id: 'category',
-      name: 'Category',
+      id: "category",
+      name: "Category",
       options: categories,
     },
     {
-      id: 'brand',
-      name: 'Brands',
+      id: "brand",
+      name: "Brands",
       options: brands,
     },
   ];
@@ -153,10 +153,10 @@ export default function ProductList() {
                               onClick={(e) => handleSort(e, option)}
                               className={classNames(
                                 option.current
-                                  ? 'font-medium text-gray-900'
-                                  : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
+                                  ? "font-medium text-gray-900"
+                                  : "text-gray-500",
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               {option.name}
@@ -393,8 +393,6 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-
-
 function ProductGrid({ products }) {
   return (
     <div className="bg-white">
@@ -418,21 +416,18 @@ function ProductGrid({ products }) {
                         {product.title}
                       </div>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      <StarIcon className="w-6 h-6 inline"></StarIcon>
-                      <span className=" align-bottom">{product.rating}</span>
-                    </p>
+                    <div className="mt-1 text-sm text-gray-500 flex items-center">
+                      <StarIcon className="w-6 h-6 inline" />
+                      <span className="align-bottom">{product.rating}</span>
+                    </div>
                   </div>
                   <div>
-                    <p className="text-sm block font-medium text-gray-900">
-                      $
-                      {discountedPrice(product)}
-                    </p>
-                    <p className="text-sm block line-through font-medium text-gray-400">
+                    <p className="text-sm font-medium text-black-400">
                       ${product.price}
                     </p>
                   </div>
                 </div>
+
                 {product.deleted && (
                   <div>
                     <p className="text-sm text-red-400">product deleted</p>

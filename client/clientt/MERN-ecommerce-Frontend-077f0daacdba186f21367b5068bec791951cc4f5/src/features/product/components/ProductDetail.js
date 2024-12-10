@@ -163,12 +163,12 @@ export default function ProductDetail() {
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-xl line-through tracking-tight text-gray-900">
+            <p className="text-xl tracking-tight text-gray-900">
               ${product.price}
             </p>
-            <p className="text-3xl tracking-tight text-gray-900">
+            {/* <p className="text-3xl tracking-tight text-gray-900">
               ${discountedPrice(product)}
-            </p>
+            </p> */}
 
             {/* Reviews */}
             <div className="mt-6">
@@ -222,7 +222,7 @@ export default function ProductDetail() {
               </div>
 
               {/* Sizes */}
-              <div className="mt-10">
+              {/* <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">Size</h3>
                 <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
                   <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
@@ -246,7 +246,7 @@ export default function ProductDetail() {
                     ))}
                   </div>
                 </RadioGroup>
-              </div>
+              </div> */}
 
               {/* Add to cart button */}
               <button
