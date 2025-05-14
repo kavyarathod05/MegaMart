@@ -30,3 +30,44 @@ exports.loginUser = async (req, res) => {
     res.status(400).json(err);
   }
 };
+const nodemailer = require('nodemailer');
+
+// Existing exports.createUser and exports.loginUser stay the same
+
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email }).exec();
+    if (!user) {
+      return res.status(404).json({ message: 'User with this email does not exist' });
+    }
+
+const resetLink = `https://mega-mart-new.vercel.app/reset-password?email=${encodeURIComponent(email)}`;
+
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Password Reset Request',
+      html: `
+        <h3>Hello ${user.name || 'User'},</h3>
+        <p>You requested a password reset. Click the link below to set a new password:</p>
+        <a href="${resetLink}">Reset Password</a>
+        <p>If you did not request this, please ignore this email.</p>
+      `,
+    });
+
+    res.status(200).json({ message: 'Password reset link sent to email' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to send reset email' });
+  }
+};
